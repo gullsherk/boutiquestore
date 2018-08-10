@@ -24,21 +24,21 @@ ActiveRecord::Schema.define(version: 2018_08_10_104935) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "order", force: :cascade do |t|
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "item_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
     t.integer "user_id"
     t.date "date"
     t.string "comments"
     t.float "sub_total"
     t.float "tax"
     t.float "discount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "order_items", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "item_id"
-    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

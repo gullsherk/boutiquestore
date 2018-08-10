@@ -18,7 +18,7 @@ class AddBotiqueStoreModels < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    create_table :order do |t|
+    create_table :orders do |t|
       t.integer :user_id, references: :users
       t.date :date
       t.string :comments
