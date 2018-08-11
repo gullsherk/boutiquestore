@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+# Gemfile
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  "https://github.com/#{repo_name}.git"
+end
 
 ruby '2.5.1'
 
@@ -62,3 +66,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'grape'
 gem 'annotate'
+gem 'devise'
+gem 'activeadmin', github: 'activeadmin', ref: 'c301ab126b3fac1962edeac124eb46e885217420'

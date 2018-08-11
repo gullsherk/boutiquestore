@@ -19,6 +19,8 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items
 
+  accepts_nested_attributes_for :order_items
+
   #Validations
   validates_numericality_of :sub_total, greater_than_or_equal_to: 1
   validates_numericality_of :discount, greater_than_or_equal_to: 1, less_than_or_equal_to: 100
