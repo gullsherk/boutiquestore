@@ -33,7 +33,7 @@ module API
           requires :last_name,  type: String, desc: 'User last name'
           optional :phone,      type: String, desc: 'User phone'
         end
-        get '/signup' do
+        post '/signup' do
           @user = User.new(
             email:      params[:email],
             password:   params[:password],
@@ -42,7 +42,7 @@ module API
             phone:      params[:phone]
           )
 
-          if @user.save!
+          if @user.save
             status 201
             @user
           else

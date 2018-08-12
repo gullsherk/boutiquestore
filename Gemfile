@@ -68,3 +68,4 @@ gem 'grape'
 gem 'annotate'
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin', ref: 'c301ab126b3fac1962edeac124eb46e885217420'
+gem "active_material", github: "vigetlabs/active_material"

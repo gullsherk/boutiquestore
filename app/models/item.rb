@@ -9,6 +9,7 @@
 #  price      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  stock      :integer
 #
 
 class Item < ApplicationRecord
@@ -27,8 +28,14 @@ class Item < ApplicationRecord
   validates :size, presence: true, inclusion: { :in => SIZES }, allow_blank: false
   validates :price, presence: true, uniqueness: true
   validates_numericality_of :price, greater_than_or_equal_to: 1
+  validates_numericality_of :stock, greater_than_or_equal_to: 0
 
   #Callbacks
+
+  before_validation :set_default_type
+
+  def set_default_type
+  end
 
   #Methods
   
