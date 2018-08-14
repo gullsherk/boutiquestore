@@ -4,6 +4,7 @@ module API
     class Orders < Grape::API
       version 'v1'
       format :json
+      formatter :json, Grape::Formatter::Rabl
  
       resource :orders do
         # creates an order in system
@@ -17,17 +18,17 @@ module API
             requires :quantity,    type: Integer
           end
         end
-        post do
-          @order = Order.new(
+        post :rabl => "orders/show.rabl" do
+          order = Order.new(
             user_id: params[:user_id],
             comments: params[:comments],
             sub_total: params[:sub_total],
             order_items_attributes: params[:order_items_attributes]
           )
 
-          if @order.save
+          if order.save
             status 201
-            @order
+            @order = Order.includes(:order_items).where(:id => order.id).first
           else
             error!({ error: 'Invalid params', details: "#{@order.errors.full_messages.join(' ,')}" }, 400)
           end

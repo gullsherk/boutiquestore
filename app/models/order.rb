@@ -32,6 +32,7 @@ class Order < ApplicationRecord
   def calculate_sum
     self.tax ||= sub_total * 0.16
     self.discount ||= sub_total * 0.05
+    self.date ||= Date.today
   end
 
 end
