@@ -7,6 +7,27 @@ module API
       formatter :json, Grape::Formatter::Rabl
  
       resource :orders do
+
+        # list a particular order
+        desc "list a particular order"
+        get ':id', :rabl => "orders/show.rabl" do
+          @order = Order.find_by_id(params[:id])
+          error!({ error: 'Order not found' }, 404) if @order.nil?
+        end
+
+        # list all orders of a user
+        desc "list all orders of a user"
+        params do
+          requires :user_id,    type: String, desc: 'User ID'
+        end
+        get :rabl => "orders/index.rabl" do
+          user = User.find_by_id(params[:user_id])
+          error!({ error: 'User not found' }, 404) if user.nil?
+          
+          @orders = user.orders
+          
+        end
+
         # creates an order in system
         desc "creates an order in system"
         params do
