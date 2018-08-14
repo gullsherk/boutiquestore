@@ -27,4 +27,11 @@ class Order < ApplicationRecord
   validates_numericality_of :tax, greater_than_or_equal_to: 1, less_than_or_equal_to: 100
   validates :comments, length: { maximum: 120 }
 
+  before_validation :calculate_sum
+
+  def calculate_sum
+    self.tax ||= sub_total * 0.16
+    self.discount ||= sub_total * 0.05
+  end
+
 end
