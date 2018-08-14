@@ -24,7 +24,6 @@ module API
             sub_total: params[:sub_total],
             order_items_attributes: params[:order_items_attributes]
           )
-          byebug
 
           if @order.save
             status 201
