@@ -30,6 +30,8 @@ class Item < ApplicationRecord
   validates_numericality_of :price, greater_than_or_equal_to: 1
   validates_numericality_of :stock, greater_than_or_equal_to: 0
 
+  mount_uploader :image, ImageUploader
+
   #Callbacks
 
   before_validation :set_default_type

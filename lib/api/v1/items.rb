@@ -8,14 +8,14 @@ module API
       resource :items do
         # index endpoint to get all items 
         desc "Return list of all Items"
-        get do
-          Item.all
+        get :rabl => "items/index.rabl" do
+          @items = Item.all
         end
 
         # Show endpoint to a specific Item
         desc "Return a specific item"
-        get ':id' do
-          Item.find_by_id(params[:id])
+        get ':id', :rabl => "items/show.rabl"  do
+          @item = Item.find_by_id(params[:id])
         end
       end
     end

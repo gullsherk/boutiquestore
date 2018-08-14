@@ -71,3 +71,4 @@ gem 'activeadmin', github: 'activeadmin', ref: 'c301ab126b3fac1962edeac124eb46e8
 gem "active_material", github: "vigetlabs/active_material"
 gem 'rack-cors', require: 'rack/cors'
 gem 'grape-rabl'
+gem 'carrierwave', '~> 1.0'
