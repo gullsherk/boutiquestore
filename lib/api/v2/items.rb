@@ -1,8 +1,8 @@
 # lib/api/v1/items.rb
 module API
-  module V1
+  module V2
     class Items < Grape::API
-      version 'v1'
+      version 'v2'
       format :json
  
       resource :items do
